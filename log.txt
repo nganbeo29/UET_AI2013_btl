@@ -1,0 +1,25 @@
+Tic-tac-toe Game (Version: 0.4.25022958)
+------------------------------------------------
+[INFO] - [2026-03-29 21:15:31] GameLogger initialized!
+[INFO] - [2026-03-29 21:15:31] redirected cin to: /home/nganiuoi/workspace/test/testcase/input5.txt
+[INFO] - [2026-03-29 21:15:31] GameInteraction initialized!
+[INFO] - [2026-03-29 21:15:31] Setup: size = 5, goal = 4
+[INFO] - [2026-03-29 21:15:31] GameEngine initialized!
+[INFO] - [2026-03-29 21:15:31] Player 1 (X) moved to (0, 0)
+[INFO] - [2026-03-29 21:15:31] Player 2 (O) moved to (1, 1)
+[INFO] - [2026-03-29 21:15:31] Player 1 (X) moved to (0, 1)
+[INFO] - [2026-03-29 21:15:31] Player 2 (O) moved to (1, 2)
+[INFO] - [2026-03-29 21:15:31] Player 1 (X) moved to (1, 3)
+[INFO] - [2026-03-29 21:15:31] Player 2 (O) moved to (2, 2)
+[INFO] - [2026-03-29 21:15:31] Player 1 (X) moved to (0, 3)
+[INFO] - [2026-03-29 21:15:31] Player 2 (O) moved to (3, 2)
+[INFO] - [2026-03-29 21:15:31] Player 1 (X) moved to (0, 4)
+[INFO] - [2026-03-29 21:15:31] Player 2 (O) moved to (2, 3)
+[INFO] - [2026-03-29 21:15:31] Player 1 (X) moved to (0, 2)
+[INFO] - [2026-03-29 21:15:31] Player 1 wins after 11 turns
+[INFO] - [2026-03-29 21:15:31] GameEngine playing done!
+[INFO] - [2026-03-29 21:15:31] Winner: 0, total turns: 11, is it bot?: false
+[INFO] - [2026-03-29 21:15:31] GameEngine show endgame done!
+[INFO] - [2026-03-29 21:15:31] fallback using 'std::cin' input stream.
+[INFO] - [2026-03-29 21:15:31] GameInteraction closed!
+[INFO] - [2026-03-29 21:15:31] GameLogger closing . . .

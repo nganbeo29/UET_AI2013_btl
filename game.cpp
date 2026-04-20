@@ -1089,7 +1089,7 @@ bool validateInput(std::string& input) {
     if (input.empty()) {
         return false;
     }
-    for (int i = 0; i < input.size(); i++) {
+    for (int i = 0; i < (int)input.size(); i++) {
         if (!isdigit(input[i])) {
             return false;
         }
@@ -1193,6 +1193,7 @@ bool selectGoal(int* goal, const int size) {
     if (*goal < 3 || *goal > size) {
         return false;
     }
+    return true;
 }
 /**
  * Ask user to select game mode.
@@ -1212,17 +1213,17 @@ bool selectGoal(int* goal, const int size) {
  */
 bool selectGameMode(GameMode* mode) {
     // TODO: implement slecting game mode
-    int* val;
-    if (!getInput(val)) {
+    int val;
+    if (!getInput(&val)) {
         return false;
     }
-    if (*val == 1) {
+    if (val == 1) {
         *mode = GameMode::PVP;
         return true;
-    } else if (*val == 2) {
+    } else if (val == 2) {
         *mode = GameMode::PVE;
         return true;
-    } else if (*val == 3) {
+    } else if (val == 3) {
         *mode = GameMode::EVE;
         return true;
     } else {
@@ -1261,17 +1262,17 @@ bool selectGameMode(GameMode* mode) {
  */
 bool selectBotLevel(BotLevel* levels, const int index) {
     // TODO: implement slecting bot level
-    int* val;
-    if (!getInput(val)) {
+    int val;
+    if (!getInput(&val)) {
         return false;
     }
-    if (*val == 1) {
+    if (val == 1) {
         levels[index] = BotLevel::EASY;
         return true;
-    } else if (*val == 2) {
+    } else if (val == 2) {
         levels[index] = BotLevel::MEDIUM;
         return true;
-    } else if (*val == 3) {
+    } else if (val == 3) {
         levels[index] = BotLevel::HARD;
         return true;
     } 
@@ -1409,7 +1410,7 @@ void showSelectMenu(SelectType selectType) {
         case SelectType::GOAL_UI:
             // TODO: display goal selection
             // Example: "Goal Input (3 - 5, goal <= size)"
-            cout << "Please choose winning goal" << endl << format("(3 - 5, goal <= size)") << endl;
+            cout << "Please choose winning goal" << endl << "(3 <= goal <= size)" << endl;
             break;
 
         case SelectType::GAME_MODE_UI:
@@ -1436,6 +1437,7 @@ void showSelectMenu(SelectType selectType) {
             // TODO: display multiple bot level selection
             // Example input format: "(bot1_level, bot2_level)"
             cout << "Please choose levels for both bots: " << endl;
+            cout << "Example input format: bot1 bot 2" << endl;
             cout << "(1) EASY || (2) MEDIUM || (3) HARD" << endl;
             break;
 
@@ -1514,9 +1516,9 @@ void displayBoard(const char board[][BOARD_N_MAX], const int size) {
 void showPlayer(int player, bool is_bot) {
     // TODO:
     if (is_bot) {
-        cout << format("Bot (Player {}) is thinking...", player);
+        cout << format("Bot (Player {}) is thinking...", player + 1);
     } else {
-        cout << format("Player {}'s turn");
+        cout << format("Player {}'s turn", player + 1);
     }
     cout << endl;
 }
@@ -1548,6 +1550,7 @@ void showMove(const int row, const int col) {
  */
 void showInvalidMove() {
     // TODO:
+    cout << "Invalid move. Please choose again" << endl;
 }
 
 /**
@@ -1566,6 +1569,13 @@ void showInvalidMove() {
  */
 void showResult(const int winner, const bool is_bot) {
     // TODO:
+    if (is_bot) {
+        cout << "Bot wins!" << endl;
+    } else if (winner == DRAW_RESULT) {
+        cout << "It's a draw!" << endl;
+    } else {
+        cout << format("Player {} wins!", winner + 1);
+    }
 }
 
 /**
@@ -1583,6 +1593,7 @@ void showResult(const int winner, const bool is_bot) {
 void printResult(const GameResult& gameResult) {
     // used for non-interactive mode
     // TODO:
+    cout << gameResult.winner << " " << gameResult.turns;
 }
 
 /* ---------- Game Engine ---------- */
@@ -1648,6 +1659,56 @@ void startGame(const RunConfig& config,
 
     // 8. Initialize board
     // initBoard(gameSetup.board, gameSetup.size);
+    if (config.interactive) {
+        clearScreen();
+        showSelectMenu(SelectType::TITLE_UI);
+    }
+    while (true) {
+        if (config.interactive) showSelectMenu(SelectType::SIZE_UI);
+        if (selectSize(&gameSetup.size)) break;
+        if (config.interactive) {
+            cout << "Invalid size. Please choose again." << endl;
+        }
+    }
+    while (true) {
+        if (config.interactive) showSelectMenu(SelectType::GOAL_UI);
+        if (selectGoal(&gameSetup.goal, gameSetup.size)) break;
+        if (config.interactive) {
+            cout << "Invalid winning goal. Please choose again." << endl;
+        }
+    }
+    while (true) {
+        if (config.interactive) showSelectMenu(SelectType::GAME_MODE_UI);
+        if (selectGameMode(&gameSetup.mode)) break;
+        if (config.interactive) {
+            cout << "Invalid game mode. Please choose again." << endl;
+        }
+    }
+    if (gameSetup.mode == GameMode::PVE) {
+        while (true) {
+            if (config.interactive) {
+                cout << "Bot level for Player 2:" << endl;
+                showSelectMenu(SelectType::BOT_LEVEL_UI);
+            }   
+            if (selectBotLevel(gameSetup.levels, 1)) break;
+            if (config.interactive) {
+                cout << "Invalid bot level. Please choose again." << endl;
+            }
+        }
+    } else if (gameSetup.mode == GameMode::EVE) {
+        while (true) {
+            if (config.interactive) {
+                cout << "Bot level for Player 1 and Player 2:" << endl;
+                showSelectMenu(SelectType::MUL_BOT_LEVEL_UI);
+            }
+            if (selectBotLevel(gameSetup.levels, 0) && selectBotLevel(gameSetup.levels, 1)) break;
+            if (config.interactive) {
+                cout << "Invalid bot level. Please choose again." << endl;
+            }
+        }
+    }
+    initBoard(gameSetup.board, gameSetup.size);
+    GameLogger::log(format("Setup: size = {}, goal = {}", gameSetup.size, gameSetup.goal));
 }
 
 /**
@@ -1658,8 +1719,7 @@ void startGame(const RunConfig& config,
  *   1. Initialize game variables
  *      - current player
  *      - symbol mapping
- *      - turn counter
- *
+ *      - turn counter *
  *   2. Repeat until game ends:
  *
  *        a) Display board
@@ -1706,7 +1766,6 @@ GameResult playGame(const RunConfig& config,
     // int currentPlayer = 0;
     // char symbols[2] = {'X','O'};
     // int turns = 0;
-
     // 2. Main game loop
     // while(true)
 
@@ -1752,7 +1811,74 @@ GameResult playGame(const RunConfig& config,
     // result.winner
     // result.turns
     // result.isBot
-
+    result.isBot = false;
+    result.turns = 0;
+    result.winner = DRAW_RESULT;
+    int cur = 0;
+    char sym[2] = {'X', 'O'};    
+    while (true) {
+        if (config.interactive) {
+            clearScreen();
+            displayBoard(gameSetup.board, gameSetup.size);
+        }
+        bool bot;
+        if (gameSetup.mode == GameMode::PVE && cur == 1) {
+            bot = true;
+        } else if (gameSetup.mode == GameMode::EVE) {
+            bot = true;
+        } else {
+            bot = false;
+        }
+        int r = -1;
+        int c = -1;
+        if (bot) {
+            pII point = measureExecutionTime(
+                "botMove",
+                [&]() {
+                    return botMove(
+                        gameSetup.board,
+                        gameSetup.size,
+                        gameSetup.goal, sym[cur],
+                        gameSetup.levels[cur]);
+                },
+                TIME_ENABLED);
+            r = point.first;
+            c = point.second;
+            if (config.interactive) { 
+                this_thread::sleep_for(chrono::milliseconds(SLEEP_TIME));
+            }
+        } else {
+            while (true) {
+                if (config.interactive) showSelectMenu(SelectType::PLAYER_UI);
+                if (getPlayerMove(&r, &c)) {
+                    break;
+                }
+                if (config.interactive) showInvalidMove();
+            }
+        }
+        if (!isValidMove(gameSetup.board, gameSetup.size, r, c)) {
+            if (!config.interactive) {
+                return result;
+            }
+            if (config.interactive) showInvalidMove();
+            continue;
+        }
+        makeMove(gameSetup.board, r, c, sym[cur]);
+        result.turns++;
+        if (config.interactive) showMove(r, c);
+        GameLogger::log(format("Player {} ({}) moved to ({}, {})", cur + 1, sym[cur], r, c));
+        if (checkWin(gameSetup.board, gameSetup.size, sym[cur], gameSetup.goal)) {
+            result.winner = cur;
+            result.isBot = bot;
+            GameLogger::log(format("Player {} wins after {} turns", cur + 1, result.turns));
+            break;
+        }
+        if (checkDraw(gameSetup.board, gameSetup.size)) {
+            GameLogger::log(format("Draw after {} turns", result.turns));
+            break;
+        }
+        cur = 1 - cur;
+    }
     return result;
 }
 
@@ -1776,6 +1902,15 @@ void endGame(const RunConfig& config,
     // printResult(gameResult);
 
     // 3. (optional) log result using GameLogger
+    if (config.interactive) {
+        clearScreen();
+        displayBoard(gameSetup.board, gameSetup.size);
+        showResult(gameResult.winner, gameResult.isBot);
+    } else {
+        printResult(gameResult);
+    }
+    GameLogger::log(format("Winner: {}, total turns: {}, is it bot?: {}", 
+        gameResult.winner, gameResult.turns, gameResult.isBot));
 }
 
 /* ---------- Game Logic ---------- */
@@ -1841,6 +1976,11 @@ void endGame(const RunConfig& config,
 void initBoard(char board[][BOARD_N_MAX],
                const int size) {
     // TODO: initialize board
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            board[i][j] = '-';
+        }
+    }
 }
 
 bool isValidMove(const char board[][BOARD_N_MAX],
@@ -1848,7 +1988,10 @@ bool isValidMove(const char board[][BOARD_N_MAX],
                  const int row,
                  const int col) {
     // TODO: validate move
-    return false;
+    if (row < 0 || row >= size || col < 0 || col >= size || board[row][col] != '-') {
+        return false;
+    }
+    return true;
 }
 
 void makeMove(char board[][BOARD_N_MAX],
@@ -1856,6 +1999,7 @@ void makeMove(char board[][BOARD_N_MAX],
               const int col,
               const char symbol) {
     // TODO: making move
+    board[row][col] = symbol;
 }
 
 bool isEmptyHead(char board[][BOARD_N_MAX],
@@ -1868,7 +2012,7 @@ bool isEmptyHead(char board[][BOARD_N_MAX],
     // - on board boundary
     // - is empty symbol ('-')
     // - equal to current symbol
-
+    if (x == size || x == -1 || y == size || y == -1 || board[x][y] == '-' || board[x][y] == symbol) return true;
     return false;
 }
 
@@ -1905,7 +2049,33 @@ bool checkWin(char board[][BOARD_N_MAX],
               const int goal,
               EndRule rule) {
     // TODO: student implementation
-
+    int dr[] = {1, 0, 1, 1};
+    int dc[] = {0, 1, 1, -1};
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            if (board[i][j] != symbol) continue;
+            for (int k = 0; k < 4; k++) {
+                int count = 1;
+                int nr = i + dr[k];
+                int nc = j + dc[k];
+                while (nr >= 0 && nr < size && nc >= 0 && nc < size && board[nr][nc] == symbol) {
+                    count++;
+                    nr += dr[k];
+                    nc += dc[k];
+                }
+                if (count != goal) continue;
+                if (rule == EndRule::NONE) {
+                    return true;
+                } else if (rule == EndRule::OPEN_ONE) {
+                    if (isEmptyHead(board, size, i - dr[k], j - dc[k], symbol) || 
+                    isEmptyHead(board, size, nr, nc, symbol)) return true;
+                } else {
+                    if (isEmptyHead(board, size, i - dr[k], j - dc[k], symbol) && 
+                    isEmptyHead(board, size, nr, nc, symbol)) return true;
+                }
+            }
+        }
+    }
     return false;
 }
 
@@ -1928,7 +2098,12 @@ bool checkWin(char board[][BOARD_N_MAX],
 bool checkDraw(char board[][BOARD_N_MAX],
                const int size) {
     // TODO: detect if the board has no empty cells
-    return false;
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            if (board[i][j] == '-') return false;
+        }
+    }
+    return true;
 }
 
 /* ---------- Bot Move Logic ---------- */
@@ -2013,9 +2188,16 @@ pII botMove(char board[][BOARD_N_MAX],
 pII random_pick(char board[][BOARD_N_MAX],
                 const int size) {
     // TODO: student implementation
-
     // placeholder
-    return std::make_pair(-1, -1);
+    vector <pII> a;
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            if (board[i][j] == '-') a.push_back({i, j});
+        }
+    }
+    if (a.empty()) return {-1, -1};
+    uniform_int_distribution<int> d(0, (int)a.size() - 1);
+    return a[d(generator)];
 }
 
 // Level 2
