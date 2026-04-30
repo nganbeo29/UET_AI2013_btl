@@ -1094,9 +1094,6 @@ bool validateInput(std::string& input) {
             return false;
         }
     }
-    if (stoi(input) < 0) {
-        return false;
-    }
     return true;
 }
 
@@ -1574,7 +1571,7 @@ void showResult(const int winner, const bool is_bot) {
     } else if (winner == DRAW_RESULT) {
         cout << "It's a draw!" << endl;
     } else {
-        cout << format("Player {} wins!", winner + 1);
+        cout << format("Player {} wins!", winner + 1) << endl;
     }
 }
 
@@ -1593,7 +1590,7 @@ void showResult(const int winner, const bool is_bot) {
 void printResult(const GameResult& gameResult) {
     // used for non-interactive mode
     // TODO:
-    cout << gameResult.winner << " " << gameResult.turns;
+    cout << gameResult.winner << " " << gameResult.turns << endl;
 }
 
 /* ---------- Game Engine ---------- */
@@ -1829,6 +1826,7 @@ GameResult playGame(const RunConfig& config,
         } else {
             bot = false;
         }
+        if (config.interactive) showPlayer(cur, bot);
         int r = -1;
         int c = -1;
         if (bot) {
@@ -1865,7 +1863,10 @@ GameResult playGame(const RunConfig& config,
         }
         makeMove(gameSetup.board, r, c, sym[cur]);
         result.turns++;
-        if (config.interactive) showMove(r, c);
+        if (config.interactive) {
+            showMove(r, c);
+            this_thread::sleep_for(chrono::milliseconds(SLEEP_TIME));
+        }
         GameLogger::log(format("Player {} ({}) moved to ({}, {})", cur + 1, sym[cur], r, c));
         if (checkWin(gameSetup.board, gameSetup.size, sym[cur], gameSetup.goal)) {
             result.winner = cur;
@@ -2225,7 +2226,77 @@ pII simple_heuristic(char board[][BOARD_N_MAX],
                      const char botSymbol,
                      const char playerSymbol) {
     // TODO: student implementation
-
+    for (int r = 0; r < size; r++) {
+        for (int c = 0; c < size; c++) {
+            if (board[r][c] == '-') {
+                board[r][c] = botSymbol;
+                bool win = checkWin(board, size, botSymbol, goal, EndRule::OPEN_TWO);
+                board[r][c] = '-';
+                if (win) {
+                    return {r, c};
+                }
+            }
+        }
+    }
+    for (int r = 0; r < size; r++) {
+        for (int c = 0; c < size; c++) {
+            if (board[r][c] == '-') {
+                board[r][c] = playerSymbol;
+                bool lose = checkWin(board, size, playerSymbol, goal, EndRule::OPEN_TWO);
+                board[r][c] = '-';
+                if (lose) {
+                    return {r, c};
+                }
+            }
+        }
+    }
+    int ddr[] = {-1, 0, 1, 1};
+    int ddc[] = {1, 1, 1, 0};
+    int maxc = 1;
+    pII l = {-1, -1};
+    for (int r = 0; r < size; r++) {
+        for (int c = 0; c < size; c++) {
+            if (board[r][c] == '-') {
+                board[r][c] = botSymbol;
+                for (int k = 0; k < 4; k++) {
+                    int co = 1;
+                    for (int d = 1; d < size; d++) {
+                        int nr = r + ddr[k] * d;
+                        int nc = c + ddc[k] * d;
+                        if (nc < 0 || nc >= size || nr < 0 || nr >= size || board[nr][nc] != botSymbol) break;
+                        co++;
+                    } 
+                    for (int d = 1; d < size; d++) {
+                        int nr = r - ddr[k] * d;
+                        int nc = c - ddc[k] * d;
+                        if (nc < 0 || nc >= size || nr < 0 || nr >= size || board[nr][nc] != botSymbol) break;
+                        co++;
+                    }
+                    if (co > maxc) {
+                        maxc = co;
+                        l = {r, c};
+                    }
+                }
+                board[r][c] = '-';
+                }
+        }
+    }
+    if (l.first != -1) return l;
+    for (int r = 0; r < size; r++) {
+        for (int c = 0; c < size; c++) {
+            if (board[r][c] == '-') {
+                for (int dr = -1; dr <= 1; dr++) {
+                    for (int dc = -1; dc <= 1; dc++) {
+                        int nr = r + dr;
+                        int nc = c + dc;
+                        if (nr >= 0 && nr < size && nc >= 0 && nc < size && board[nr][nc] != '-') return {r, c};
+                    }
+                }
+            }
+        }
+    }
+    int mid = size / 2;
+    if (board[mid][mid] == '-') return {mid, mid};
     // fallback
     return random_pick(board, size);
 }
