@@ -1,0 +1,42 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/game.dir/link.d"
+  "CMakeFiles/game.dir/src/game/bot/bot.cpp.o"
+  "CMakeFiles/game.dir/src/game/bot/bot.cpp.o.d"
+  "CMakeFiles/game.dir/src/game/bot/bot_factory.cpp.o"
+  "CMakeFiles/game.dir/src/game/bot/bot_factory.cpp.o.d"
+  "CMakeFiles/game.dir/src/game/bot/bot_lv1.cpp.o"
+  "CMakeFiles/game.dir/src/game/bot/bot_lv1.cpp.o.d"
+  "CMakeFiles/game.dir/src/game/bot/bot_lv2.cpp.o"
+  "CMakeFiles/game.dir/src/game/bot/bot_lv2.cpp.o.d"
+  "CMakeFiles/game.dir/src/game/bot/bot_lv3.cpp.o"
+  "CMakeFiles/game.dir/src/game/bot/bot_lv3.cpp.o.d"
+  "CMakeFiles/game.dir/src/game/engine.cpp.o"
+  "CMakeFiles/game.dir/src/game/engine.cpp.o.d"
+  "CMakeFiles/game.dir/src/game/interface/i_interaction.cpp.o"
+  "CMakeFiles/game.dir/src/game/interface/i_interaction.cpp.o.d"
+  "CMakeFiles/game.dir/src/game/interface/i_renderer.cpp.o"
+  "CMakeFiles/game.dir/src/game/interface/i_renderer.cpp.o.d"
+  "CMakeFiles/game.dir/src/game/logic.cpp.o"
+  "CMakeFiles/game.dir/src/game/logic.cpp.o.d"
+  "CMakeFiles/game.dir/src/main.cpp.o"
+  "CMakeFiles/game.dir/src/main.cpp.o.d"
+  "CMakeFiles/game.dir/src/sdl/interaction.cpp.o"
+  "CMakeFiles/game.dir/src/sdl/interaction.cpp.o.d"
+  "CMakeFiles/game.dir/src/sdl/renderer.cpp.o"
+  "CMakeFiles/game.dir/src/sdl/renderer.cpp.o.d"
+  "CMakeFiles/game.dir/src/terminal/interaction.cpp.o"
+  "CMakeFiles/game.dir/src/terminal/interaction.cpp.o.d"
+  "CMakeFiles/game.dir/src/terminal/renderer.cpp.o"
+  "CMakeFiles/game.dir/src/terminal/renderer.cpp.o.d"
+  "CMakeFiles/game.dir/src/utils/config.cpp.o"
+  "CMakeFiles/game.dir/src/utils/config.cpp.o.d"
+  "CMakeFiles/game.dir/src/utils/logger.cpp.o"
+  "CMakeFiles/game.dir/src/utils/logger.cpp.o.d"
+  "game"
+  "game.pdb"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/game.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()
