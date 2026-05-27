@@ -290,8 +290,17 @@ CMakeFiles/game.dir/src/sdl/interaction.cpp.o: \
  /usr/include/c++/15/bits/stl_numeric.h \
  /usr/include/c++/15/pstl/glue_numeric_defs.h \
  /usr/include/c++/15/pstl/execution_defs.h /usr/include/c++/15/utility \
- /usr/include/c++/15/bits/stl_relops.h /usr/include/c++/15/format \
- /usr/include/c++/15/array /usr/include/c++/15/charconv \
+ /usr/include/c++/15/bits/stl_relops.h /usr/include/c++/15/functional \
+ /usr/include/c++/15/bits/std_function.h \
+ /usr/include/c++/15/unordered_map \
+ /usr/include/c++/15/bits/unordered_map.h \
+ /usr/include/c++/15/bits/hashtable.h \
+ /usr/include/c++/15/bits/hashtable_policy.h \
+ /usr/include/c++/15/ext/aligned_buffer.h \
+ /usr/include/c++/15/bits/enable_special_members.h \
+ /usr/include/c++/15/bits/node_handle.h \
+ /usr/include/c++/15/bits/erase_if.h /usr/include/c++/15/array \
+ /usr/include/c++/15/format /usr/include/c++/15/charconv \
  /usr/include/c++/15/x86_64-redhat-linux/bits/error_constants.h \
  /usr/include/c++/15/locale /usr/include/c++/15/bits/locale_classes.h \
  /usr/include/c++/15/ext/atomicity.h \
@@ -327,7 +336,6 @@ CMakeFiles/game.dir/src/sdl/interaction.cpp.o: \
  /usr/include/libintl.h /usr/include/c++/15/bits/codecvt.h \
  /usr/include/c++/15/bits/locale_facets_nonio.tcc \
  /usr/include/c++/15/bits/locale_conv.h /usr/include/c++/15/optional \
- /usr/include/c++/15/bits/enable_special_members.h \
  /usr/include/c++/15/span /usr/include/c++/15/bits/monostate.h \
  /usr/include/c++/15/bits/formatfwd.h \
  /usr/include/c++/15/bits/ranges_algobase.h \
@@ -340,4 +348,9 @@ CMakeFiles/game.dir/src/sdl/interaction.cpp.o: \
  /usr/include/c++/15/ios /usr/include/c++/15/bits/basic_ios.h \
  /usr/include/c++/15/bits/basic_ios.tcc \
  /usr/include/c++/15/bits/ostream.tcc /usr/include/c++/15/istream \
- /usr/include/c++/15/bits/istream.tcc
+ /usr/include/c++/15/bits/istream.tcc \
+ /home/nganiuoi/workspace/test/UET_AI2013_btl/level-2/src/sdl/../utils/logger.h \
+ /usr/include/c++/15/fstream \
+ /usr/include/c++/15/x86_64-redhat-linux/bits/basic_file.h \
+ /usr/include/c++/15/x86_64-redhat-linux/bits/c++io.h \
+ /usr/include/c++/15/bits/fstream.tcc

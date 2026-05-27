@@ -338,6 +338,130 @@ CMakeFiles/game.dir/src/main.cpp.o: \
  /usr/include/SDL2/SDL_render.h /usr/include/SDL2/SDL_shape.h \
  /usr/include/SDL2/SDL_system.h /usr/include/SDL2/SDL_timer.h \
  /usr/include/SDL2/SDL_version.h /usr/include/SDL2/SDL_locale.h \
- /usr/include/SDL2/SDL_misc.h \
+ /usr/include/SDL2/SDL_misc.h /usr/include/c++/15/functional \
+ /usr/include/c++/15/bits/std_function.h \
+ /usr/include/c++/15/unordered_map \
+ /usr/include/c++/15/bits/unordered_map.h \
+ /usr/include/c++/15/bits/hashtable.h \
+ /usr/include/c++/15/bits/hashtable_policy.h \
+ /usr/include/c++/15/ext/aligned_buffer.h \
+ /usr/include/c++/15/bits/node_handle.h \
+ /usr/include/c++/15/bits/erase_if.h /usr/include/c++/15/array \
  /home/nganiuoi/workspace/test/UET_AI2013_btl/level-2/src/sdl/renderer.h \
+ /usr/include/c++/15/x86_64-redhat-linux/bits/stdc++.h \
+ /usr/include/c++/15/cassert /usr/include/assert.h \
+ /usr/include/c++/15/cfloat /usr/include/c++/15/climits \
+ /usr/include/c++/15/csetjmp /usr/include/setjmp.h \
+ /usr/include/c++/15/cstdarg /usr/include/c++/15/algorithm \
+ /usr/include/c++/15/bits/stl_algo.h \
+ /usr/include/c++/15/bits/algorithmfwd.h \
+ /usr/include/c++/15/bits/stl_heap.h \
+ /usr/include/c++/15/bits/stl_tempbuf.h \
+ /usr/include/c++/15/bits/ranges_algo.h \
+ /usr/include/c++/15/bits/ranges_algobase.h \
+ /usr/include/c++/15/pstl/glue_algorithm_defs.h \
+ /usr/include/c++/15/bitset /usr/include/c++/15/iterator \
+ /usr/include/c++/15/bits/stream_iterator.h /usr/include/c++/15/memory \
+ /usr/include/c++/15/bits/stl_raw_storage_iter.h \
+ /usr/include/c++/15/bits/align.h /usr/include/c++/15/bits/unique_ptr.h \
+ /usr/include/c++/15/bits/shared_ptr.h \
+ /usr/include/c++/15/bits/shared_ptr_base.h \
+ /usr/include/c++/15/bits/allocated_ptr.h \
+ /usr/include/c++/15/ext/concurrence.h \
+ /usr/include/c++/15/bits/shared_ptr_atomic.h \
+ /usr/include/c++/15/bits/atomic_base.h \
+ /usr/include/c++/15/bits/atomic_lockfree_defines.h \
+ /usr/include/c++/15/bits/atomic_wait.h /usr/include/unistd.h \
+ /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+ /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
+ /usr/include/bits/getopt_core.h /usr/include/bits/unistd_ext.h \
+ /usr/include/linux/close_range.h /usr/include/syscall.h \
+ /usr/include/sys/syscall.h /usr/include/asm/unistd.h \
+ /usr/include/asm/unistd_64.h /usr/include/bits/syscall.h \
+ /usr/include/c++/15/bits/std_mutex.h \
+ /usr/include/c++/15/backward/auto_ptr.h \
+ /usr/include/c++/15/bits/ranges_uninitialized.h \
+ /usr/include/c++/15/pstl/glue_memory_defs.h /usr/include/c++/15/atomic \
+ /usr/include/c++/15/ratio /usr/include/c++/15/scoped_allocator \
+ /usr/include/c++/15/typeindex /usr/include/c++/15/any \
+ /usr/include/c++/15/variant /usr/include/c++/15/bits/monostate.h \
+ /usr/include/c++/15/bits/parse_numbers.h /usr/include/c++/15/ranges \
+ /usr/include/c++/15/span /usr/include/c++/15/source_location \
+ /usr/include/c++/15/version /usr/include/c++/15/coroutine \
+ /usr/include/c++/15/csignal /usr/include/signal.h \
+ /usr/include/bits/signum-generic.h /usr/include/bits/signum-arch.h \
+ /usr/include/bits/types/sig_atomic_t.h \
+ /usr/include/bits/types/siginfo_t.h /usr/include/bits/types/__sigval_t.h \
+ /usr/include/bits/siginfo-arch.h /usr/include/bits/siginfo-consts.h \
+ /usr/include/bits/siginfo-consts-arch.h \
+ /usr/include/bits/types/sigval_t.h /usr/include/bits/types/sigevent_t.h \
+ /usr/include/bits/sigevent-consts.h /usr/include/bits/sigaction.h \
+ /usr/include/bits/sigcontext.h /usr/include/bits/types/stack_t.h \
+ /usr/include/sys/ucontext.h /usr/include/bits/sigstack.h \
+ /usr/include/bits/sigstksz.h /usr/include/bits/ss_flags.h \
+ /usr/include/bits/types/struct_sigstack.h /usr/include/bits/sigthread.h \
+ /usr/include/bits/signal_ext.h /usr/include/c++/15/cstring \
+ /usr/include/c++/15/ctime /usr/include/c++/15/cfenv \
+ /usr/include/c++/15/fenv.h /usr/include/fenv.h /usr/include/bits/fenv.h \
+ /usr/include/c++/15/cinttypes /usr/include/c++/15/cuchar \
+ /usr/include/uchar.h /usr/include/c++/15/complex \
+ /usr/include/c++/15/sstream /usr/include/c++/15/bits/sstream.tcc \
+ /usr/include/c++/15/deque /usr/include/c++/15/bits/stl_deque.h \
+ /usr/include/c++/15/bits/deque.tcc /usr/include/c++/15/iomanip \
+ /usr/include/c++/15/locale \
+ /usr/include/c++/15/bits/locale_facets_nonio.h \
+ /usr/include/c++/15/x86_64-redhat-linux/bits/time_members.h \
+ /usr/include/c++/15/x86_64-redhat-linux/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/15/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/15/bits/locale_conv.h \
+ /usr/include/c++/15/bits/quoted_string.h /usr/include/c++/15/list \
+ /usr/include/c++/15/bits/stl_list.h /usr/include/c++/15/bits/list.tcc \
+ /usr/include/c++/15/map /usr/include/c++/15/bits/stl_tree.h \
+ /usr/include/c++/15/bits/stl_map.h \
+ /usr/include/c++/15/bits/stl_multimap.h /usr/include/c++/15/queue \
+ /usr/include/c++/15/bits/stl_queue.h /usr/include/c++/15/set \
+ /usr/include/c++/15/bits/stl_set.h \
+ /usr/include/c++/15/bits/stl_multiset.h /usr/include/c++/15/stack \
+ /usr/include/c++/15/bits/stl_stack.h /usr/include/c++/15/valarray \
+ /usr/include/c++/15/bits/valarray_array.h \
+ /usr/include/c++/15/bits/valarray_array.tcc \
+ /usr/include/c++/15/bits/valarray_before.h \
+ /usr/include/c++/15/bits/slice_array.h \
+ /usr/include/c++/15/bits/valarray_after.h \
+ /usr/include/c++/15/bits/gslice.h \
+ /usr/include/c++/15/bits/gslice_array.h \
+ /usr/include/c++/15/bits/mask_array.h \
+ /usr/include/c++/15/bits/indirect_array.h /usr/include/c++/15/chrono \
+ /usr/include/c++/15/bits/chrono.h /usr/include/c++/15/bits/chrono_io.h \
+ /usr/include/c++/15/format /usr/include/c++/15/charconv \
+ /usr/include/c++/15/bits/formatfwd.h /usr/include/c++/15/bits/unicode.h \
+ /usr/include/c++/15/bits/unicode-data.h /usr/include/c++/15/codecvt \
+ /usr/include/c++/15/condition_variable \
+ /usr/include/c++/15/bits/unique_lock.h /usr/include/c++/15/stop_token \
+ /usr/include/c++/15/bits/std_thread.h /usr/include/c++/15/semaphore \
+ /usr/include/c++/15/bits/semaphore_base.h \
+ /usr/include/c++/15/bits/atomic_timed_wait.h \
+ /usr/include/c++/15/bits/this_thread_sleep.h /usr/include/sys/time.h \
+ /usr/include/semaphore.h /usr/include/bits/semaphore.h \
+ /usr/include/c++/15/forward_list /usr/include/c++/15/bits/forward_list.h \
+ /usr/include/c++/15/bits/forward_list.tcc /usr/include/c++/15/future \
+ /usr/include/c++/15/mutex /usr/include/c++/15/bits/atomic_futex.h \
+ /usr/include/c++/15/regex /usr/include/c++/15/bits/regex_constants.h \
+ /usr/include/c++/15/bits/regex_error.h \
+ /usr/include/c++/15/bits/regex_automaton.h \
+ /usr/include/c++/15/bits/regex_automaton.tcc \
+ /usr/include/c++/15/bits/regex_scanner.h \
+ /usr/include/c++/15/bits/regex_scanner.tcc \
+ /usr/include/c++/15/bits/regex_compiler.h \
+ /usr/include/c++/15/bits/regex_compiler.tcc \
+ /usr/include/c++/15/bits/regex.h /usr/include/c++/15/bits/regex.tcc \
+ /usr/include/c++/15/bits/regex_executor.h \
+ /usr/include/c++/15/bits/regex_executor.tcc /usr/include/c++/15/thread \
+ /usr/include/c++/15/unordered_set \
+ /usr/include/c++/15/bits/unordered_set.h \
+ /usr/include/c++/15/shared_mutex /usr/include/c++/15/filesystem \
+ /usr/include/c++/15/bits/fs_fwd.h /usr/include/c++/15/bits/fs_path.h \
+ /usr/include/c++/15/bits/fs_dir.h /usr/include/c++/15/bits/fs_ops.h \
+ /usr/include/c++/15/memory_resource /usr/include/c++/15/barrier \
+ /usr/include/c++/15/latch /usr/include/c++/15/syncstream \
  /usr/include/SDL2/SDL_ttf.h /usr/include/SDL2/SDL.h
